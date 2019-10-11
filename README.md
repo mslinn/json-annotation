@@ -1,6 +1,6 @@
 The __@json__ scala macro annotation is the quickest way to add a JSON format to your [Play](http://www.playframework.com/) project's case classes.
 
-Project forked from Martin Raison's [Kifi macros](https://github.com/kifi/json-annotation)
+This project was forked from `vital-software`'s fork of Martin Raison's [Kifi macros](https://github.com/kifi/json-annotation)
 
 ## How it works
 
@@ -21,7 +21,9 @@ val json = Json.toJson(person)
 Json.fromJson[Person](json)
 ```
 
-For Play-Json 2.6+, you can use @jsonDefaults as an equivalent to Json.using[Json.WithDefaults].format[T]. This creates a format where the Reads[T] will pull in default values from non-Option case classes. These must be static values (e.g. timestamp = DateTime.now is not a good default, as DateTime.now is a def).
+For Play-Json 2.6+, you can use `@jsonDefaults` as an equivalent to Json.using[Json.WithDefaults].format[T]. 
+This creates a format where the Reads[T] will pull in default values from non-`Option` case classes. 
+These must be static values (e.g. `timestamp = DateTime.now` is not a good default, as `DateTime.now` is a `def`).
 
 ```scala
 @jsonDefaults case class Person(name: String, age: Int = 7)
@@ -34,15 +36,17 @@ Json.fromJson("{\"name\": \"Victor Hugo\"}")
 If you're using Play with SBT, you should add both the package and the "Macros Paradise" compiler plugin:
 
 ```scala
-libraryDependencies += "com.github.vital-software" %% "json-annotation" % "0.6.0"
+resolvers += "micronautics/scala on bintray" at "http://dl.bintray.com/micronautics/scala"
+
+libraryDependencies += "com.micronautics" %% "json-annotation" % "0.6.0"
+
 addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
 ```
 
 If you're not using Play, you will also need to add ```play-json``` to your dependencies:
 
 ```scala
-resolvers += "Typesafe Repo" at "http://repo.typesafe.com/typesafe/releases/"
-libraryDependencies += "com.typesafe.play" %% "play-json" % "2.6.7"
+libraryDependencies += "com.typesafe.play" %% "play-json" % "2.7.3"
 ```
 
-This library was tested with both Scala 2.11 and 2.12.
+This library was tested with Scala 2.11, 2.12 and 2.13.

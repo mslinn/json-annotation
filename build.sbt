@@ -6,14 +6,16 @@ scalaVersion := "2.13.1"
 
 crossScalaVersions := Seq("2.11.12", "2.12.10", "2.13.1")
 
-resolvers ++= Seq(
-  Resolver.sonatypeRepo("snapshots")
-)
+licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 libraryDependencies ++= Seq(
   "org.scala-lang"    %  "scala-reflect" % scalaVersion.value,
   "com.typesafe.play" %% "play-json"     % "2.7.4" % Test,
   "org.specs2"        %% "specs2-core"   % "4.7.1" % Test
+)
+
+resolvers ++= Seq(
+  Resolver.sonatypeRepo("snapshots")
 )
 
 Compile / scalacOptions ++= {
